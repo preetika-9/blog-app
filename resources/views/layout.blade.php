@@ -34,11 +34,13 @@
                     <li><a class="{{ Request::routeIs('contact.index') ? 'active' : '' }}"
                             href="{{ route('contact.index') }}">Contact</a></li>
 
-                    <li><a class="{{ Request::routeIs('login') ? 'active' : '' }}"
-                            href="{{ route('login') }}">Login</a></li>
+                    @guest
+                        <li><a class="{{ Request::routeIs('login') ? 'active' : '' }}"
+                                href="{{ route('login') }}">Login</a></li>
 
-                    <li><a class="{{ Request::routeIs('register') ? 'active' : '' }}"
-                            href="{{ route('register') }}">Register</a></li>
+                        <li><a class="{{ Request::routeIs('register') ? 'active' : '' }}"
+                                href="{{ route('register') }}">Register</a></li>
+                    @endguest
                 </ul>
             </div>
 

@@ -8,18 +8,28 @@
     <main class="container " style="background: #fff">
         <section id="contact-us">
             <h1 style="padding-top: 50px">Create New Post</h1>
-            <form action="" method="">
+            <form action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data"> {{-- to deal with file enctype multipart is imp --}}
+                @csrf
                 {{-- title --}}
                 <label for="title"><span>Title</span></label>
                 <input type="text" id="title" name="title" />
+                @error('title')
+                    <p style="color: red; margin-bottom: 10px">{{ $message }}</p>
+                @enderror
 
                 {{-- image --}}
                 <label for="image"><span>Image</span></label>
                 <input type="file" id="image" name="image" />
+                @error('image')
+                    <p style="color: red; margin-bottom: 10px">{{ $message }}</p>
+                @enderror
 
                 {{-- body --}}
                 <label for="body"><span>Body</span></label>
                 <textarea id="body" name="body"></textarea>
+                @error('body')
+                    <p style="color: red; margin-bottom: 10px">{{ $message }}</p>
+                @enderror
 
                 {{-- button --}}
                 <input type="submit" value="Submit" />

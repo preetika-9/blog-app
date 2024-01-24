@@ -21,6 +21,9 @@ Route::get('/blog/post', [BlogController::class, 'show'])->name('blog.show');
 // create blog post
 Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
 
+// store blog post to the database
+Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
+
 
 // using closure
 // to about page 

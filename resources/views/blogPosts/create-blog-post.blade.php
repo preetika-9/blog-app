@@ -1,4 +1,8 @@
 @extends('layout')
+@section('head')
+    {{-- https://cdn.ckeditor.com/    yeha bata link leko ho hai  --}}
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+@endsection
 
 @section('main')
     <main class="container " style="background: #fff">
@@ -22,4 +26,10 @@
             </form>
         </section>
     </main>
+@endsection
+
+@section('script')
+    <script>
+        CKEDITOR.replace('body');
+    </script>
 @endsection

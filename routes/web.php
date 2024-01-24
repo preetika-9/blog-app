@@ -18,6 +18,10 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 // to single blog post
 Route::get('/blog/post', [BlogController::class, 'show'])->name('blog.show');
 
+// create blog post
+Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
+
+
 // using closure
 // to about page 
 Route::get('/about', function () {

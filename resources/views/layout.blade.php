@@ -34,6 +34,7 @@
                     <li><a class="{{ Request::routeIs('contact.index') ? 'active' : '' }}"
                             href="{{ route('contact.index') }}">Contact</a></li>
 
+                    {{-- jo authenticated xaina usele hernu pauxa --}}
                     @guest
                         <li><a class="{{ Request::routeIs('login') ? 'active' : '' }}"
                                 href="{{ route('login') }}">Login</a></li>
@@ -41,6 +42,13 @@
                         <li><a class="{{ Request::routeIs('register') ? 'active' : '' }}"
                                 href="{{ route('register') }}">Register</a></li>
                     @endguest
+
+
+                    {{-- //authenticated user le matra herna paune --}}
+                    @auth
+                        <li><a class="{{ Request::routeIs('dashboard') ? 'active' : '' }}"
+                                href="{{ route('dashboard') }}">Dashboard</a></li>
+                    @endauth
                 </ul>
             </div>
 

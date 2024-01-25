@@ -11,7 +11,8 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->get();
+        // $posts = Post::all();
         return view('blogPosts.blog', compact('posts'));
     }
 
@@ -50,10 +51,16 @@ class BlogController extends Controller
         return redirect()->back()->with('status', 'Post Created Successfully');
     }
 
-    public function show($slug)
+    // public function show($slug)
+    // {
+    //     // dd($slug);
+    //     $post = Post::where('slug', $slug)->first();
+    //     return view('blogPosts.single-blog-post', compact('post'));
+    // }
+
+    // using route modle binding 
+    public function show(Post $post)
     {
-        // dd($slug);
-        $post = Post::where('slug', $slug)->first();
         return view('blogPosts.single-blog-post', compact('post'));
     }
 }

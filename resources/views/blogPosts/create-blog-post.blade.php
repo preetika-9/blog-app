@@ -8,6 +8,9 @@
     <main class="container " style="background: #fff">
         <section id="contact-us">
             <h1 style="padding-top: 50px">Create New Post</h1>
+            @if (session('status'))
+                <p style="color:green; padding-button: 10px;" class="text-center">{{ session('status') }}</p>
+            @endif
             <form action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data"> {{-- to deal with file enctype multipart is imp --}}
                 @csrf
                 {{-- title --}}

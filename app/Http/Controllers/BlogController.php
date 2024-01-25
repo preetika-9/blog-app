@@ -46,7 +46,7 @@ class BlogController extends Controller
         $post->imagePath = $imagePath;
 
         $post->save(); //after we save return to the same page
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Post Created Successfully');
     }
 
     public function show()

@@ -8,6 +8,7 @@
     <main class="container " style="background: #fff">
         <section id="contact-us">
             <h1 style="padding-top: 50px">Create New Post</h1>
+            {{-- success message --}}
             @if (session('status'))
                 <p style="color:green; padding-button: 10px;" class="text-center">{{ session('status') }}</p>
             @endif

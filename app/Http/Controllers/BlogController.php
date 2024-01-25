@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -38,7 +38,15 @@ class BlogController extends Controller
         //in termilal  php artisan storage:link  --> copy of same folder in public->storage->postsImages->list of images
         // postsImages/Oi5waM1akopevp66xn0h9KjsSFVKvFf1nGPH5YHY.png
 
+        $post = new Post(); //Post is model
+        $post->title = $title;
+        $post->slug = $slug;
+        $post->user_id = $user_id;
+        $post->body = $body;
+        $post->imagePath = $imagePath;
 
+        $post->save(); //after we save return to the same page
+        return redirect()->back();
     }
 
     public function show()

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -25,6 +27,18 @@ class BlogController extends Controller
             'body' => 'required'
         ]));
         // dd('Validation passed');
+
+        $title = $request->input('title');
+        $slug = Str::slug($title, '-'); //The COding Book  === str slug converts into === the-coding-book
+        $user_id = Auth::user()->id;
+        $body = $request->input('body');
+
+        // file upload
+        $imagePath = 'storage/' .   $request->file('image')->store('postsImages', 'public');  //storage->app->public->postsImages->list of images     after this
+        //in termilal  php artisan storage:link  --> copy of same folder in public->storage->postsImages->list of images
+        // postsImages/Oi5waM1akopevp66xn0h9KjsSFVKvFf1nGPH5YHY.png
+
+
     }
 
     public function show()

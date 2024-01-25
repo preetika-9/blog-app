@@ -15,15 +15,14 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 // blog page
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 
-// to single blog post
-Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
-
 // create blog post
 Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
 
 // store blog post to the database
 Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
 
+// to single blog post
+Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
 
 // using closure
 // to about page 

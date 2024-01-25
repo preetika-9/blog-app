@@ -31,7 +31,9 @@ class BlogController extends Controller
         // dd('Validation passed');
 
         $title = $request->input('title');
-        $slug = Str::slug($title, '-'); //The COding Book  === str slug converts into === the-coding-book
+
+        $postId = Post::latest()->take(1)->first()->id + 1;
+        $slug = Str::slug($title, '-') . '-' . $postId; //The COding Book  === str slug converts into === the-coding-book
         $user_id = Auth::user()->id;
         $body = $request->input('body');
 

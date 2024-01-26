@@ -3,6 +3,9 @@
 @section('main')
     <main class="container">
         <h2 class="header-title">All Blog Posts</h2>
+        @if (session('status'))
+            <p style="color:green; padding-button: 10px;" class="text-center">{{ session('status') }}</p>
+        @endif
         <div class="searchbar">
             <form action="">
                 <input type="text" placeholder="Search..." name="search" />
@@ -25,6 +28,20 @@
 
             @foreach ($posts as $post)
                 <div class="card-blog-content">
+                    @auth
+                        @if (auth()->user()->id === $post->user->id)
+                            <div class="post-buttons" style="display: flex;padding-bottom: 10px">
+                                <a href="{{ route('blog.edit', $post) }}"
+                                    style="padding: 9px; background: green; color: white; margin-right: 4px">Edit</a>
+                                <form action="{{ route('blog.delete', $post) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="submit" value="Delete"
+                                        style="padding: 10px; background: red; color: white; border: 1px solid red" />
+                                </form>
+                            </div>
+                        @endif
+                    @endauth
                     <img src="{{ asset($post->imagePath) }}" alt="" />
                     <p>
                         {{ $post->created_at->diffForHumans() }}

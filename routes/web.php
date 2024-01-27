@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
@@ -41,6 +42,12 @@ Route::get('/about', function () {
 
 // to contact page
 Route::get('/contact-us', [ContactController::class, 'index'])->name('contact.index');
+
+
+
+// category resource controller
+Route::resource('/categories', CategoryController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -15,6 +15,7 @@ class BlogController extends Controller
     }
     public function index(Request $request)
     {
+        // search
         if ($request->search) {
             $posts = Post::where('title', 'like', '%' . $request->search . '%')
                 ->orWhere('body', 'like', '%' . $request->search . '%')->latest()->get();
@@ -113,7 +114,7 @@ class BlogController extends Controller
         return view('blogPosts.single-blog-post', compact('post'));
     }
 
-    public function delete(Post $post)
+    public function destroy(Post $post)
     {
         $post->delete();
         return redirect()->back()->with('status', 'Post Deleted Successfully');

@@ -26,14 +26,14 @@
         </div>
         <section class="cards-blog latest-blog">
 
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
                 <div class="card-blog-content">
                     @auth
                         @if (auth()->user()->id === $post->user->id)
                             <div class="post-buttons" style="display: flex;padding-bottom: 10px">
                                 <a href="{{ route('blog.edit', $post) }}"
                                     style="padding: 9px; background: green; color: white; margin-right: 4px">Edit</a>
-                                <form action="{{ route('blog.delete', $post) }}" method="post">
+                                <form action="{{ route('blog.destroy', $post) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <input type="submit" value="Delete"
@@ -51,7 +51,9 @@
                         <a href="{{ route('blog.show', $post) }}">{{ $post->title }}</a>
                     </h4>
                 </div>
-            @endforeach
+            @empty
+                <p style="text-align:center">Sorry, currently there is no blog post related to that search</p>
+            @endforelse
 
 
         </section>

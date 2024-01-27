@@ -31,7 +31,7 @@ Route::get('/blog/{post}/edit', [BlogController::class, 'edit'])->name('blog.edi
 Route::put('/blog/{post}', [BlogController::class, 'update'])->name('blog.update');
 
 // to update single blog post
-Route::delete('/blog/{post}', [BlogController::class, 'delete'])->name('blog.delete');
+Route::delete('/blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy');
 
 // using closure
 // to about page 

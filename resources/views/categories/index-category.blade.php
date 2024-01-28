@@ -2,9 +2,7 @@
 @section('main')
     <div>
         <h1>Categories List</h1>
-        @if (session('status'))
-            <p style="color:green; padding-button: 10px;" class="text-center">{{ session('status') }}</p>
-        @endif
+        @include('includes.flash-message')
 
         @foreach ($categories as $category)
             <div class="item" style="display: flex; justify-content: center; align-item: center">

@@ -9,9 +9,7 @@
         <section id="contact-us">
             <h1 style="padding-top: 50px">Edit Category!</h1>
             {{-- success message --}}
-            @if (session('status'))
-                <p style="color:green; padding-button: 10px;" class="text-center">{{ session('status') }}</p>
-            @endif
+            @include('includes.flash-message')
             <form action="{{ route('categories.update', $category) }}" method="post"> {{-- to deal with file enctype multipart is imp --}}
                 @method('put')
                 @csrf

@@ -9,9 +9,7 @@
         <section id="contact-us">
             <h1 style="padding-top: 50px">Edit Post</h1>
             {{-- success message --}}
-            @if (session('status'))
-                <p style="color:green; padding-button: 10px;" class="text-center">{{ session('status') }}</p>
-            @endif
+            @include('includes.flash-message')
             <form action="{{ route('blog.update', $post) }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 {{-- to deal with file enctype multipart is imp --}}

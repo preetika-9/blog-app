@@ -3,9 +3,7 @@
 @section('main')
     <main class="container">
         <h2 class="header-title">All Blog Posts</h2>
-        @if (session('status'))
-            <p style="color:green; padding-button: 10px;" class="text-center">{{ session('status') }}</p>
-        @endif
+        @include('includes.flash-message')
         <div class="searchbar">
             <form action="">
                 <input type="text" placeholder="Search..." name="search" />

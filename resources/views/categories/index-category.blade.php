@@ -13,7 +13,9 @@
                     <a href="{{ route('categories.edit', $category) }}"
                         style="padding: 9px; background: green; color: white; margin-right: 4px">Edit</a>
                 </div>
-                <form action="" method="">
+                <form action="{{ route('categories.destroy', $category) }}" method="post">
+                    @method('delete')
+                    @csrf
                     <input type="submit" value="Delete"
                         style="padding: 3px; background: red; color: white; border: 1px solid red">
                 </form>

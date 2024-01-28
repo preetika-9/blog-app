@@ -7,16 +7,17 @@
 @section('main')
     <main class="container " style="background: #fff">
         <section id="contact-us">
-            <h1 style="padding-top: 50px">Create New Category!</h1>
+            <h1 style="padding-top: 50px">Edit Category!</h1>
             {{-- success message --}}
             @if (session('status'))
                 <p style="color:green; padding-button: 10px;" class="text-center">{{ session('status') }}</p>
             @endif
-            <form action="{{ route('categories.store') }}" method="post"> {{-- to deal with file enctype multipart is imp --}}
+            <form action="{{ route('categories.update', $category) }}" method="post"> {{-- to deal with file enctype multipart is imp --}}
+                @method('put')
                 @csrf
                 {{-- title --}}
                 <label for="name"><span>Name</span></label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}" />
+                <input type="text" id="name" name="name" value="{{ $category->name }}" />
                 @error('name')
                     <p style="color: red; margin-bottom: 10px">{{ $message }}</p>
                 @enderror
@@ -30,10 +31,4 @@
             </div>
         </section>
     </main>
-@endsection
-
-@section('script')
-    <script>
-        CKEDITOR.replace('body');
-    </script>
 @endsection

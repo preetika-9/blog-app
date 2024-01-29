@@ -19,6 +19,17 @@
                     <p style="color: red; margin-bottom: 10px">{{ $message }}</p>
                 @enderror
 
+                <label for="categories"><span>Choose a category:</span></label>
+                <select name="category_id" id="categories">
+                    <option selected disabled>Select Option</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    <p style="color: red; margin-bottom: 10px">{{ $message }}</p>
+                @enderror
+
                 {{-- image --}}
                 <label for="image"><span>Image</span></label>
                 <input type="file" id="image" name="image" />

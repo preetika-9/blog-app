@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade'); //cascade->if u delete user delete all the post of that user
+            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade'); //delete post related to category
             $table->string('imagePath');
             $table->text('body');
             $table->timestamps();

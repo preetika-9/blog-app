@@ -34,21 +34,29 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('blogPosts.create-blog-post');
+        $categories = Category::all();
+        return view('blogPosts.create-blog-post', compact('categories'));
     }
 
     public function store(Request $request)
     {
+        // dd($request->category_id);
         $request->validate(([
             'title' => 'required',
             'image' => 'required | image',
-            'body' => 'required'
+            'body' => 'required',
+            'category_id' => 'required'
         ]));
         // dd('Validation passed');
 
         $title = $request->input('title');
+        $category_id = $request->input('category_id');
 
-        $postId = Post::latest()->take(1)->first()->id + 1;
+        if (Post::latest()->first() !== null) {
+            $postId = Post::latest()->first()->id + 1;
+        } else {
+            $postId = 1;
+        }
         $slug = Str::slug($title, '-') . '-' . $postId; //The COding Book  === str slug converts into === the-coding-book
         $user_id = Auth::user()->id;
         $body = $request->input('body');
@@ -60,6 +68,7 @@ class BlogController extends Controller
 
         $post = new Post(); //Post is model
         $post->title = $title;
+        $post->category_id = $category_id;
         $post->slug = $slug;
         $post->user_id = $user_id;
         $post->body = $body;

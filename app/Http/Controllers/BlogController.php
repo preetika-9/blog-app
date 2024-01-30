@@ -21,6 +21,8 @@ class BlogController extends Controller
             $posts = Post::where('title', 'like', '%' . $request->search . '%')
                 ->orWhere('body', 'like', '%' . $request->search . '%')->latest()->paginate(4);
             // last post   search = %ost%   
+        } elseif ($request->category) {
+            $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(3)->withQueryString();
         } else {
             $posts = Post::latest()->paginate(4);
         }

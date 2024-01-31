@@ -126,7 +126,10 @@ class BlogController extends Controller
     // using route modle binding 
     public function show(Post $post)
     {
-        return view('blogPosts.single-blog-post', compact('post'));
+        $category = $post->category;
+
+        $relatedPosts = $category->posts()->where('id', '!=', $post->id)->latest()->take(3)->get();
+        return view('blogPosts.single-blog-post', compact('post', 'relatedPosts'));
     }
 
     public function destroy(Post $post)
